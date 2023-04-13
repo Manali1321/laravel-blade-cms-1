@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('company');
-            $table->string('duration');
-            $table->string('detail');
+            $table->string('start');
+            $table->string('end');
+            $table->text('detail');
             $table->string('location');
             $table->timestamps();
         });

@@ -19,7 +19,8 @@ class ExperienceFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'company' => $this->faker->sentence,
-            'duration' => $this->faker->date,
+            'start' => $this->faker->year,
+            'end' => $this->faker->year,
             'detail' => $this->faker->paragraph,
             'location' => $this->faker->sentence,
         ];
