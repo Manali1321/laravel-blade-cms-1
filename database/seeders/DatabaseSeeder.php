@@ -20,16 +20,19 @@ class DatabaseSeeder extends Seeder
     {
 
         User::truncate();
-        Skill::truncate();
         Project::truncate();
         Qualification::truncate();
         Experience::truncate();
+        Skill::truncate();
 
         User::factory()->count(2)->create();
         Skill::factory()->count(3)->create();
-        Project::factory()->count(4)->create();
         Qualification::factory()->count(4)->create();
         Experience::factory()->count(4)->create();
+        Project::factory()->count(4)->create()->each(function ($project) {
+            $skills = Skill::all()->random(rand(1, 2))->pluck('id');
+            $project->skills()->attach($skills);
+        });
 
 
     }

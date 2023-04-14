@@ -54,7 +54,6 @@ Route::get('/projects', function () {
 
     foreach ($projects as $key => $project) {
         $projects[$key]['user'] = User::where('id', $project['user_id'])->first();
-        $projects[$key]['skill'] = Skill::where('id', $project['skill_id'])->first();
 
         if ($project['image']) {
             $projects[$key]['image'] = env('APP_URL') . 'storage/' . $project['image'];
@@ -68,7 +67,6 @@ Route::get('/projects', function () {
 Route::get('/projects/profile/{project?}', function (Project $project) {
 
     $project['user'] = User::where('id', $project['user_id'])->first();
-    $project['skill'] = Skill::where('id', $project['skill_id'])->first();
 
     if ($project['image']) {
         $project['image'] = env('APP_URL') . 'storage/' . $project['image'];

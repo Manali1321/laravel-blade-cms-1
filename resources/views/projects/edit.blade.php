@@ -61,19 +61,10 @@
 
         <div class="w3-margin-bottom">
             <label for="skill_id">Skill:</label>
-            <select name="skill_id" id="skill_id">
-                <option></option>
-                @foreach($skills as $skill)
-                    <option value="{{$skill->id}}"
-                        {{$skill->id == old('skill_id', $skill->skill_id) ? 'selected' : ''}}>
-                        {{$skill->title}}
-                    </option>
-                @endforeach
-            </select>
-            @if ($errors->first('skill_id'))
-                <br>
-                <span class="w3-text-red">{{$errors->first('skill_id')}}</span>
-            @endif
+            @foreach($allSkills as $skill)
+            <input type="checkbox" value="{{$skill->id}}" name="skills[]" id="skill_{{$skill->id}}">
+            <label for="skill_{{$skill->id}}">{{$skill->title}}</label>
+            @endforeach
         </div>
 
         <button type="submit" class="w3-button w3-green">Edit Project</button>

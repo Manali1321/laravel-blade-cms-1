@@ -11,7 +11,7 @@
             <th>Image</th>
             <th>Title</th>
             <th>Slug</th>
-            <th>Type</th>
+            <th>Skills</th>
             <th>Created</th>
             <th></th>
             <th></th>
@@ -30,7 +30,12 @@
                         {{$project->slug}}
                     </a>
                 </td>
-                <td>{{$project->skill->title}}</td>
+                <td>
+                    @foreach($project->skills as $skill)
+                    <span>{{$skill->title}},</span>
+                    @endforeach
+                </td>
+
                 <td>{{$project->created_at->format('M j, Y')}}</td>
                 <td><a href="/console/projects/image/{{$project->id}}">Image</a></td>
                 <td><a href="/console/projects/edit/{{$project->id}}">Edit</a></td>

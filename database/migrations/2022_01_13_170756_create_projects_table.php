@@ -21,7 +21,6 @@ class CreateProjectsTable extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->text('content');
-            $table->foreignId('skill_id');
             $table->foreignId('user_id');
             $table->timestamps();
         });

@@ -14,15 +14,17 @@ class ProjectsController extends Controller
 
     public function list()
     {
+
         return view('projects.list', [
             'projects' => Project::all()
         ]);
+
     }
 
     public function addForm()
     {
         return view('projects.add', [
-            'skills' => Skill::all(),
+            'allSkills' => Skill::all(),
         ]);
     }
 
@@ -35,7 +37,7 @@ class ProjectsController extends Controller
             'live' => 'nullable|url',
             'source' => 'nullable|url',
             'content' => 'required',
-            'skill_id' => 'required',
+            'skills' => 'nullable',
         ]);
 
         $project = new Project();
@@ -44,9 +46,9 @@ class ProjectsController extends Controller
         $project->live = $attributes['live'];
         $project->source = $attributes['source'];
         $project->content = $attributes['content'];
-        $project->skill_id = $attributes['skill_id'];
         $project->user_id = Auth::user()->id;
         $project->save();
+
 
         return redirect('/console/projects/list')
             ->with('message', 'Project has been added!');
@@ -54,14 +56,17 @@ class ProjectsController extends Controller
 
     public function editForm(Project $project)
     {
+        $projectS = Project::with('skills')->find(1);
+
         return view('projects.edit', [
             'project' => $project,
-            'skills' => Skill::all(),
+            'allSkills' => Skill::all(),
         ]);
     }
 
     public function edit(Project $project)
     {
+        $projectS = Project::with('skills')->find(1);
 
         $attributes = request()->validate([
             'title' => 'required',
@@ -73,7 +78,6 @@ class ProjectsController extends Controller
             'live' => 'nullable|url',
             'source' => 'nullable|url',
             'content' => 'required',
-            'skill_id' => 'required',
         ]);
 
         $project->title = $attributes['title'];
@@ -81,7 +85,6 @@ class ProjectsController extends Controller
         $project->live = $attributes['live'];
         $project->source = $attributes['source'];
         $project->content = $attributes['content'];
-        $project->skill_id = $attributes['skill_id'];
         $project->save();
 
         return redirect('/console/projects/list')
