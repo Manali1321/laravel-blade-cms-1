@@ -122,23 +122,3 @@ To set up this CMS follow these steps:
     php artisan key:generate
     ```
 
-## Test
-
-To view the public front end go to http://localhost:8888/ on a Mac or http://localhost/ on a Windows machine. This may be different based on your MAMP configuration. 
-
-To log in to the admin, use the URL http://localhost:8888/console/login on a Mac or http://localhost/console/login on a Windows machine. This may be different based on your MAMP configuration. 
-
-You will need to look up the email addresses in the ```user``` table and the default password is "password".
-
-***
-
-## Repo Resources
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Laravel](https://laravel.com/)
-
-Full tutorial URL: https://codeadam.ca/learning/php-cms-laravel.html
-
-<a href="https://codeadam.ca">
-<img src="https://codeadam.ca/images/code-block.png" width="100">
-</a>
